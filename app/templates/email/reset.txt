@@ -1,0 +1,4 @@
+Dzień dobry {{user}}
+W celu zresetowania hasła naciśnij proszę
+{{url_for('password_reset', token=token, _external=True) }}
+Jeśli nie wnioskowałeś o zmianę hasła to proszę zignoruj tego maila

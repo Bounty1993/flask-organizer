@@ -1,0 +1,17 @@
+{% if page.has_other %}
+  <ul class="pagination center-align">
+    <li {% if page.has_prev %} {% else %} class="disabled" {% endif %}>
+      <a href="{{request.path}}?page=1"><i class="material-icons">chevron_left</i></a>
+    </li>
+    {% if page.has_prev %}
+    <li class="waves-effect"><a href="{{request.path}}?page={{page.prev_num}}">{{page.prev_num}}</a></li>
+    {% endif %}
+    <li class="active"><a href="#">{{page.num_page}}</a></li>
+    {% if page.has_next %}
+    <li class="waves-effect"><a href="{{request.path}}?page={{page.next_num}}">{{page.next_num}}</a></li>
+    {% endif %}
+    <li class="waves-effect" {% if page.has_next %} {% else %} class="disabled" {% endif %}>
+      <a href="{{request.path}}?page={{page.last}}"><i class="material-icons">chevron_right</i></a>
+    </li>
+  </ul>
+{% endif %}

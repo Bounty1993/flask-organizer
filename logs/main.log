@@ -1,0 +1,5 @@
+2019-06-29 19:21:04,536 INFO: My main app setup [in /home/bartosz/Development/project/simple-flask/app/__init__.py:34]
+2019-06-29 19:23:37,415 INFO: Hello babe [in /home/bartosz/Development/project/simple-flask/app/routes.py:15]
+2019-06-29 19:25:00,693 INFO: Hello babe [in /home/bartosz/Development/project/simple-flask/app/routes.py:15]
+2019-06-29 19:25:39,488 INFO: Hello babe [in /home/bartosz/Development/project/simple-flask/app/routes.py:15]
+2019-06-29 19:25:59,574 INFO: Hello babe [in /home/bartosz/Development/project/simple-flask/app/routes.py:15]

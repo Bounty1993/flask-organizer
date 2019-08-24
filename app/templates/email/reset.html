@@ -1,0 +1,8 @@
+<p> Dzień dobry {{user}} </p>
+<p>
+  W celu zresetowania hasła naciśnij proszę
+  <a href="{{url_for('password_reset', token=token, _external=True) }}">link </a>
+</p>
+
+<p>Ewentualnie podążaj ścieżką {{url_for('password_reset', token=token, _external=True) }}</p>
+<p>Jeśli nie wnioskowałeś o zmianę hasła to proszę zignoruj tego maila</p>

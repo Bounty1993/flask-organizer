@@ -1,0 +1,9 @@
+flask==1.0.3
+python-dotenv==0.10.3
+flask-debugtoolbar==0.10.1
+flask-wtf==0.14.2
+SQLAlchemy>=0.8.0
+flask-migrate==2.5.2
+flask-login==0.4.1
+flask-mail==0.9.1
+pyjwt==1.7.1

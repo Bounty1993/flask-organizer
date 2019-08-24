@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+  <div class="center-align" style="margin-top: 20%">
+    <i class="large material-icons">not_listed_location</i>
+  </div>
+  <h5 class="center-align">Nie udało się znaleźć szukanej strony</h5>
+  <h5 class="center-align">Wróć do <a href="{{url_for('index') }}">Strony Głównej</a></h5>
+</div>
+{% endblock content %}

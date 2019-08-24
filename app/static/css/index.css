@@ -1,0 +1,14 @@
+.clearer > .container {
+    all: initial;
+}
+.index-panel {
+    color: white;
+    height: 40vh;
+}
+.webname {
+    font-weight: bold;
+}
+.index-icon {
+    margin-top: 20px;
+    text-align: center;
+}

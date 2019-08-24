@@ -1,0 +1,24 @@
+<div class="row" id="alert_box">
+  <div class="col s12 m12">
+    <div class="card red darken-1">
+      <div class="row">
+        <div class="col s12 m10">
+          <div class="card-content white-text">
+            {% for message in messages %}
+            <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+      </div>
+      <div class="col s12 m2">
+        <i id="alert_close" class="icon_style material-icons">clear</i>
+      </div>
+    </div>
+   </div>
+  </div>
+</div>
+<script>
+  $('#alert_close').click(function(){
+    $( "#alert_box" ).fadeOut( "slow", function() {
+    });
+  });
+</script>
