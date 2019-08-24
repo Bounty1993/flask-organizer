@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 
 from sqlalchemy import or_
 
-from flask import flash, redirect, url_for, render_template, request
+from flask import flash, redirect, url_for, render_template, request, jsonify
 from flask_login import current_user, login_user, logout_user, login_required
 
 from app import app, db
@@ -197,6 +197,18 @@ def tasks_list():
         else:
             data[date] = [value, ]
     return render_template('tasks_list.html', tasks=data, page=page)
+
+
+@app.route('/important/', methods=['POST'])
+@login_required
+def add_important():
+    data = request.json
+    task_id = int(data['id'])
+    task = Task.query.get(task_id)
+    if task:
+        task.change_important()
+        return jsonify({'success': 'Hello'})
+    return jsonify({'error': 'Zapytanie błędne'})
 
 
 @app.route('/tasks/<int:id>/')

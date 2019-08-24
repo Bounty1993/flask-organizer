@@ -41,7 +41,13 @@
           <div class="col s12 m6">
             <div class="card blue-grey darken-1">
               <div class="card-content white-text">
-                <span class="card-title">{{ task.name }}</span>
+                <div>
+                  <span class="card-title" style="float: left">{{ task.name }}</span>
+                  <span class="rating" style="float:right; font-size: 1.5em; color: gold" data-id="{{task.id}}">
+                    ☆
+                  </span>
+                </div>
+                <div style="clear: both"></div>
                 <p>{{ task.place }}</p>
                 <p>{{ task.summary }}</p>
               </div>
@@ -62,3 +68,20 @@
   </div>
 </div>
 {% endblock content %}
+{% block javascript %}
+<script>
+$('.rating').click( (e) => {
+  let target_id = e.target.dataset.id
+  $.ajax({
+    url: '/important/',
+    data: JSON.stringify({id: target_id}),
+    type: 'POST',
+    contentType:'application/json',
+    dataType: 'JSON',
+    success: (json) => {
+      console.log(json)
+    }
+  });
+})
+</script>
+{% endblock javascript %}
