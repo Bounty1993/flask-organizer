@@ -207,8 +207,9 @@ def add_important():
     task = Task.query.get(task_id)
     if task:
         task.change_important()
-        return jsonify({'success': 'Hello'})
-    return jsonify({'error': 'Zapytanie błędne'})
+        db.session.commit()
+        return jsonify({'success': 'Hello'}), 200
+    return jsonify({'error': 'Zapytanie błędne'}), 400
 
 
 @app.route('/tasks/<int:id>/')

@@ -25,9 +25,8 @@
 <body>
 <nav class="purple darken-3">
   <div class="my-navbar nav-wrapper container">
-    <a href="#" class="brand-logo">Logo</a>
+    <a href="{{url_for('index')}}" class="brand-logo">Organizer</a>
     <ul class="right hide-on-med-and-down">
-      <li><a class="waves-effect waves-light btn">Button <i class="material-icons right">cloud</i></a></li>
       {% if current_user.is_authenticated %}
       <li><a class="tooltipped" data-position="bottom"
              data-tooltip="Twój profil" href="{{ url_for('tasks_list') }}">

@@ -43,9 +43,9 @@
               <div class="card-content white-text">
                 <div>
                   <span class="card-title" style="float: left">{{ task.name }}</span>
-                  <span class="rating" style="float:right; font-size: 1.5em; color: gold" data-id="{{task.id}}">
+                  <div class="rating" style="float:right" data-id={{task.id}}>
                     ☆
-                  </span>
+                  </div>
                 </div>
                 <div style="clear: both"></div>
                 <p>{{ task.place }}</p>
@@ -72,6 +72,7 @@
 <script>
 $('.rating').click( (e) => {
   let target_id = e.target.dataset.id
+  console.log(target_id)
   $.ajax({
     url: '/important/',
     data: JSON.stringify({id: target_id}),
@@ -79,7 +80,8 @@ $('.rating').click( (e) => {
     contentType:'application/json',
     dataType: 'JSON',
     success: (json) => {
-      console.log(json)
+      console.log(e.target)
+      $(e.target).addClass('checked-star')
     }
   });
 })
