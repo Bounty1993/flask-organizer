@@ -221,3 +221,11 @@ def task_detail(id):
     if form.validate_on_submit():
         print('Hello')
     return render_template('tasks_detail.html', form=form)
+
+
+@app.route('/tasks/past')
+def past_tasks():
+    user_id = current_user.id
+    print(user_id)
+    past_tasks = Task.past_tasks(user_id)
+    return render_template('past_tasks.html')

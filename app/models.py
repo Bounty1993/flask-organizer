@@ -76,10 +76,11 @@ class Task(db.Model):
         self.important = not self.important
 
     @classmethod
-    def past_tasks(cls, start=None, end=None):
+    def past_tasks(cls, user_id, start=None, end=None):
+        tasks = cls.query.filter_by(user_id=user_id)
         if not end:
             end = datetime.today().date()
-        return cls.query.filter(cls.end < end)
+        return tasks.filter(cls.end < end)
 
     @classmethod
     def current_tasks(cls, start=None, end=None):
