@@ -1,5 +1,6 @@
 from datetime import datetime
 from time import time
+from datetime import datetime
 
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -73,6 +74,18 @@ class Task(db.Model):
 
     def change_important(self):
         self.important = not self.important
+
+    @classmethod
+    def past_tasks(cls, start=None, end=None):
+        if not end:
+            end = datetime.today().date()
+        return cls.query.filter(cls.end < end)
+
+    @classmethod
+    def current_tasks(cls, start=None, end=None):
+        if not start:
+            start = datetime.today().date()
+        return cls.query.filter(cls.end >= end)
 
 
 class Category(db.Model):

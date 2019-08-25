@@ -37,7 +37,7 @@ def login():
             login_user(user, remember=form.remember.data)
             return redirect(url_for('index'))
         flash('dane są niepoprawne')
-        return render_template(url_for('login'))
+        return redirect(url_for('login'))
     return render_template('login.html', form=form)
 
 
@@ -190,6 +190,7 @@ def tasks_list():
             'summary': make_short(task.description, 20),
             'start': task.start.strftime('%H:%M'),
             'end': task.end.strftime('%H:%M'),
+            'important': task.important,
         }
         date = task.start.date()
         if data.get(date):

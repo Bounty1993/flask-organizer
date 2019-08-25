@@ -43,9 +43,13 @@
               <div class="card-content white-text">
                 <div>
                   <span class="card-title" style="float: left">{{ task.name }}</span>
-                  <div class="rating" style="float:right" data-id={{task.id}}>
-                    ☆
-                  </div>
+                  {% if task.important %}
+                    <div class="rating checked-star" style="float:right" data-id={{task.id}}>
+                  {% else %}
+                    <div class="rating" style="float:right" data-id={{task.id}}>
+                  {% endif %}
+                      ☆
+                    </div>
                 </div>
                 <div style="clear: both"></div>
                 <p>{{ task.place }}</p>
@@ -53,7 +57,7 @@
               </div>
               <div class="card-action">
                 <a href="#">{{ task.start }}</a>
-                <a href="#">{{ task.start }}</a>
+                <a href="#">{{ task.end }}</a>
                 <a href="{{ url_for('task_detail', id=task.id) }}" class="btn-floating cyan pulse">
                   <i class="material-icons">edit</i>
                 </a>
@@ -81,7 +85,7 @@ $('.rating').click( (e) => {
     dataType: 'JSON',
     success: (json) => {
       console.log(e.target)
-      $(e.target).addClass('checked-star')
+      $(e.target).toggleClass('checked-star')
     }
   });
 })
