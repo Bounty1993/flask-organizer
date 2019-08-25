@@ -171,13 +171,10 @@ def tasks_list():
     if limit == 'finishing':
         two_days = datetime.now() - timedelta(days=2)
         tasks = tasks.filter((Task.end > two_days))
+    is_filtered = limit is not None
     tasks = tasks.order_by(Task.start)
     search = request.args.get('search')
-    if search:
-        tasks = tasks.filter(
-            (Task.name == search) |
-            (Task.description == search) |
-            (Task.place == search))
+    tasks = Task.search(tasks, search)
     data = {}
     num_page = request.args.get('page', 1)
     paginator = Paginator(tasks.all())
@@ -197,7 +194,9 @@ def tasks_list():
             data[date].append(value)
         else:
             data[date] = [value, ]
-    return render_template('tasks_list.html', tasks=data, page=page)
+    return render_template('tasks_list.html',
+                           tasks=data, page=page,
+                           is_filtered=is_filtered)
 
 
 @app.route('/important/', methods=['POST'])

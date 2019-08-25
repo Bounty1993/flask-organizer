@@ -22,15 +22,27 @@
         </button>
       </form>
       <div class="col s-9" style="margin-top: 84px; float: right;">
-        <a href="{{ url_for('tasks_list')}}?limit=finishing" class="waves-effect waves-light btn">
-          Kończące się
-        </a>
-        <a href="{{ url_for('tasks_list')}}?limit=important" class="waves-effect waves-light btn">
-          Ważne
-        </a>
+        {% if is_filtered %}
         <a href="{{ url_for('tasks_list')}}" class="waves-effect waves-light btn">
           Wyczyść
         </a>
+        {% else %}
+        <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Filtry</a>
+
+        <!-- Dropdown Structure -->
+        <ul id='dropdown1' class='dropdown-content'>
+          <li>
+            <a href="{{ url_for('tasks_list')}}?limit=finishing">
+              Ostatnie 30 dni
+            </a>
+          </li>
+          <li>
+            <a href="{{ url_for('tasks_list')}}?limit=important">
+              Ważne
+            </a>
+          </li>
+        </ul>
+        {% endif %}
       </div>
     </div>
     <div class="row">
@@ -88,6 +100,7 @@ $('.rating').click( (e) => {
       $(e.target).toggleClass('checked-star')
     }
   });
-})
+});
+$('.dropdown-trigger').dropdown();
 </script>
 {% endblock javascript %}

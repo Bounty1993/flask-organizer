@@ -88,6 +88,15 @@ class Task(db.Model):
             start = datetime.today().date()
         return cls.query.filter(cls.end >= end)
 
+    @staticmethod
+    def search(tasks, query):
+        if query:
+            tasks = tasks.filter(
+                (Task.name == query) |
+                (Task.description == query) |
+                (Task.place == query))
+        return tasks
+
 
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
