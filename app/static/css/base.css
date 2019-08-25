@@ -21,8 +21,18 @@
 
 .home-panel {
     background-color: white;
-    color: #000000;
-    height: 100px;
+    color: black;
+    margin: 30px 0;
+    border-radius: 20px;
+}
+.home-panel > ul {
+    padding: 20px;
+}
+.home-panel .title {
+    font-weight: bold;
+}
+.home-panel .content {
+    margin: 10px 0;
 }
 
 .comment-text {
