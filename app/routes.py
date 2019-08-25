@@ -239,3 +239,13 @@ def past_tasks():
     print(user_id)
     past_tasks = Task.past_tasks(user_id)
     return render_template('past_tasks.html')
+
+
+@app.route('/tasks/tags')
+def task_tags():
+    return render_template('tasks_tags.html')
+
+
+@app.route('/tasks/tags/create')
+def create_tag():
+    pass
