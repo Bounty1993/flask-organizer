@@ -4,6 +4,13 @@
 {% endblock stylesheet %}
 {% block content %}
 <div class="row">
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% include "_messages.html" %}
+    {% endif %}
+  {% endwith %}
+</div>
+<div class="row">
   <div class="col s10 offset-s1">
     <div class="main-text row">Twoje zadania do wykonania</div>
     <div class="flex-around">
@@ -73,6 +80,11 @@
                 <a href="{{ url_for('task_detail', id=task.id) }}" class="btn-floating cyan pulse">
                   <i class="material-icons">edit</i>
                 </a>
+                <form method="POST" action="{{ url_for('task_delete', id=task.id)}}" class="inline">
+                  <button class="right btn-floating red">
+                    <i class="material-icons">delete</i>
+                  </button>
+                </form>
               </div>
             </div>
           </div>

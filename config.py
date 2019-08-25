@@ -10,4 +10,4 @@ class Config:
     MAIL_SERVER = 'localhost'
     MAIL_PORT = 8025
     ADMINS = 'kontakt@organize.com'
-    NUM_PER_PAGE = 2
+    NUM_PER_PAGE = 10

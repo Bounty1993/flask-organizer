@@ -1,8 +1,6 @@
 import logging
 from datetime import datetime, timedelta
 
-from sqlalchemy import or_
-
 from flask import flash, redirect, url_for, render_template, request, jsonify
 from flask_login import current_user, login_user, logout_user, login_required
 
@@ -210,6 +208,19 @@ def add_important():
         db.session.commit()
         return jsonify({'success': 'Hello'}), 200
     return jsonify({'error': 'Zapytanie błędne'}), 400
+
+
+@app.route('/tasks/<int:id>/delete/', methods=['POST'])
+@login_required
+def task_delete(id):
+    task = Task.query.get(id)
+    user_id = current_user.id
+    if task.user_id == user_id:
+        task.set_deleted()
+        flash('Zadanie zostało usunięte')
+        return redirect(url_for('tasks_list'))
+    flash('Nie możesz usunąć wybranego zadania')
+    return redirect(url_for('tasks_list'))
 
 
 @app.route('/tasks/<int:id>/')

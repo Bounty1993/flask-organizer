@@ -70,3 +70,9 @@
 .checked-star {
     color: gold;
 }
+.right {
+    float: right;
+}
+.inline {
+    display: inline;
+}

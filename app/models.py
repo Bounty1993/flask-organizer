@@ -75,6 +75,10 @@ class Task(db.Model):
     def change_important(self):
         self.important = not self.important
 
+    def set_deleted(self):
+        # TO DO
+        print('It works')
+
     @classmethod
     def past_tasks(cls, user_id, start=None, end=None):
         tasks = cls.query.filter_by(user_id=user_id)
