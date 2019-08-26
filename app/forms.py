@@ -1,11 +1,9 @@
 from datetime import datetime, timedelta
 
 from flask_wtf import FlaskForm
-from wtforms import StringField, TimeField, PasswordField, BooleanField, IntegerField, DateField
+from wtforms import StringField, TimeField, DateField
 from wtforms.validators import (
-    DataRequired, ValidationError, Length, EqualTo, Email)
-
-from .models import User
+    DataRequired, ValidationError, Length)
 
 
 class TaskCreationForm(FlaskForm):

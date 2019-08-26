@@ -2,10 +2,10 @@ import logging
 from datetime import datetime, timedelta
 
 from flask import flash, redirect, url_for, render_template, request, jsonify
-from flask_login import current_user, login_user, logout_user, login_required
+from flask_login import current_user, login_required
 
 from app import app, db
-from .models import User, Task
+from .models import Task
 from .forms import (
     TaskCreationForm,
 )
