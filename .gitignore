@@ -24,4 +24,4 @@ htmlcov/
 *,cover
 
 app.db
-/venv/
+
