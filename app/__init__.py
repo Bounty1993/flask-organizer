@@ -23,6 +23,9 @@ mail = Mail(app)
 
 login.login_view = 'login'
 
+from app.errors import bp as error_bp
+
+app.register_blueprint(error_bp)
 
 from app import routes, models, errors
 
