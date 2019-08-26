@@ -31,14 +31,14 @@
       <li><a class="tooltipped" data-position="bottom"
              data-tooltip="Twój profil" href="{{ url_for('tasks_list') }}">
         <i class="material-icons">person</i></a></li>
-      <li><a class="tooltipped" href="{{ url_for('logout') }}" data-position="bottom"
+      <li><a class="tooltipped" href="{{ url_for('auth.logout') }}" data-position="bottom"
              data-tooltip="Wyloguj" >
         <i class="material-icons">exit_to_app</i></a></li>
       {% else %}
-        <li><a href="{{ url_for('login') }}" class="waves-effect waves-light btn">
+        <li><a href="{{ url_for('auth.login') }}" class="waves-effect waves-light btn">
           Zaloguj się
          </a></li>
-        <li><a href="{{ url_for('signup') }}" class="waves-effect waves-light btn">
+        <li><a href="{{ url_for('auth.signup') }}" class="waves-effect waves-light btn">
           Zarejestruj się
         </a></li>
       {% endif %}
@@ -71,7 +71,7 @@
               <div class="title">Czy Organizer jest bezpłatny?</div>
               <div class="content">
                 Tak! Organizer jest i zawsze będzie zupełnie bezpłatny. Jednakże, aby móc korzystać z jego
-                funkcjonalności konieczna jest rejestracja. Może to zrobić <a href="{{url_for('signup')}}">tutaj</a>.
+                funkcjonalności konieczna jest rejestracja. Może to zrobić <a href="{{url_for('auth.signup')}}">tutaj</a>.
               </div>
             </li>
             <li>

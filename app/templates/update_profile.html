@@ -5,7 +5,7 @@
     <div class="main-text">Witaj {{current_user.username}}</div>
     <div class="btn-group">
       <a href="{{ url_for('tasks_list') }}" class="waves-effect waves-light btn">Twoje zadania</a>
-      <a href="{{ url_for('password_change') }}" class="waves-effect waves-light btn">Zmiana hasła</a>
+      <a href="{{ url_for('auth.password_change') }}" class="waves-effect waves-light btn">Zmiana hasła</a>
     </div>
     <div class="main-text">Zaaktualizuj dane</div>
     <form method="post" class="col s12">

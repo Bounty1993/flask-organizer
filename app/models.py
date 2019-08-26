@@ -1,4 +1,3 @@
-from datetime import datetime
 from time import time
 from datetime import datetime
 
@@ -9,7 +8,7 @@ import jwt
 
 from app import db, app
 from app import login
-from .emails import send_email
+from app.auth.emails import send_email
 
 
 class User(UserMixin, db.Model):
