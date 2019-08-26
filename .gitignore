@@ -15,6 +15,7 @@ _mailinglist
 .idea/
 docs/_build/
 venv/
+migrations/
 
 # Coverage reports
 htmlcov/
