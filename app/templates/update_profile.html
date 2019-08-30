@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="row">
-  <div class="col s8 offset-s2">
+  <div class="col s10 m6 offset-s1 offset-m3">
     <div class="main-text">Witaj {{current_user.username}}</div>
     <div class="btn-group">
       <a href="{{ url_for('tasks_list') }}" class="waves-effect waves-light btn">Twoje zadania</a>
@@ -28,10 +28,9 @@
           {% endfor %}
         </div>
       </div>
-        <button class="btn waves-effect waves-light col s6" type="submit" name="action">
+      <button class="btn waves-effect waves-light col s12 m6" type="submit" name="action">
           Aktualizuj
-        </button>
-      </div>
+      </button>
     </form>
   </div>
 </div>
