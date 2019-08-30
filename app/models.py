@@ -128,6 +128,10 @@ class Category(db.Model):
     slug = db.Column(db.String(100))
     tasks = db.relationship('Task', backref='category', lazy='dynamic')
 
+    @classmethod
+    def verify_title(cls, title, user_id):
+        print('TO DO')
+
 
 @login.user_loader
 def load_user(id):

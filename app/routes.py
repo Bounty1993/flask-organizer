@@ -5,7 +5,7 @@ from flask import flash, redirect, url_for, render_template, request, jsonify
 from flask_login import current_user, login_required
 
 from app import app, db
-from .models import Task
+from .models import Task, Category
 from .forms import (
     TaskCreationForm,
     CategoryCreationForm,
@@ -143,7 +143,11 @@ def task_tags():
     return render_template('tasks_tags.html')
 
 
-@app.route('/tasks/tags/create')
+@app.route('/tasks/categories/create')
 @login_required
 def create_category():
-    pass
+    user_id = current_user.id
+    form = CategoryCreationForm()
+    if form.validate_on_submit():
+        title = form.title.data
+        Category.verify_title(user_id, title)
