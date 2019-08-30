@@ -23,9 +23,12 @@
   {% endblock stylesheet %}
 </head>
 <body>
-<nav class="purple darken-3">
+<nav class="nav-extended purple darken-3">
   <div class="my-navbar nav-wrapper container">
     <a href="{{url_for('index')}}" class="brand-logo">Organizer</a>
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+      <i class="material-icons">menu</i>
+    </a>
     <ul class="right hide-on-med-and-down">
       {% if current_user.is_authenticated %}
       <li><a class="tooltipped" data-position="bottom"
@@ -41,6 +44,15 @@
         <li><a href="{{ url_for('auth.signup') }}" class="waves-effect waves-light btn">
           Zarejestruj się
         </a></li>
+      {% endif %}
+    </ul>
+    <ul class="sidenav" id="mobile-demo">
+      {% if current_user.is_authenticated %}
+      <li><a href="{{ url_for('tasks_list') }}">Twój profil</a></li>
+      <li><a href="{{ url_for('auth.logout') }}">Wyloguj</a></li>
+      {% else %}
+      <li><a href="{{ url_for('auth.login') }}">Zaloguj</a></li>
+      <li><a href="{{ url_for('auth.signup') }}">Zarejestruj się</a></li>
       {% endif %}
     </ul>
   </div>
@@ -99,6 +111,12 @@
   <!--JavaScript at end of body for optimized loading-->
   <script type="text/javascript" src="/static/js/materialize.min.js"></script>
   <script src="/static/js/base.js"></script>
+  <script>
+  // It makes navbar extendable in mobile
+    $(document).ready(function(){
+    $('.sidenav').sidenav();
+    });
+  </script>
 
   {% block javascript %}
   {% endblock javascript %}
