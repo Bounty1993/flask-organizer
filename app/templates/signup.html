@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="row">
-  <div class="col s6 offset-s3">
+  <div class="col s10 m6 offset-s1 offset-m3">
     <div class="main-text">Zarejestruj się</div>
     <form method="post" class="col s12">
       {{ form.hidden_tag() }}
@@ -24,14 +24,14 @@
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s-6">
+        <div class="input-field col s12 m6">
           {{ form.password1.label }}
           {{ form.password1 }}
           {% for error in form.password1.errors %}
             <span style="color:red;">[{{error}}]</span>
           {% endfor %}
         </div>
-        <div class="input-field col s-6">
+        <div class="input-field col s12 m6">
           {{ form.password2.label }}
           {{ form.password2 }}
           {% for error in form.password2.errors %}
