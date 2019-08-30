@@ -1,5 +1,6 @@
 from time import time
 from datetime import datetime
+import enum
 
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -11,6 +12,13 @@ from app import login
 from app.auth.emails import send_email
 
 
+user_category = db.Table(
+    'user_category',
+    db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('category_id', db.Integer, db.ForeignKey('category.id'))
+)
+
+
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(30), unique=True, index=True)
@@ -18,6 +26,10 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
     about = db.Column(db.String(1200), nullable=True)
     tasks = db.relationship('Task', backref='author', lazy='dynamic')
+    categories = db.relationship(
+        'Category', secondary=user_category,
+        lazy='dynamic', backref=db.backref('authors', lazy=True)
+    )
 
     def __repr__(self):
         return f'<User {self.username}>'
@@ -58,6 +70,11 @@ class User(UserMixin, db.Model):
         return User.query.get(id)
 
 
+class TaskStatus(enum.Enum):
+    active = 'active'
+    deleted = 'deleted'
+
+
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128))
@@ -66,7 +83,12 @@ class Task(db.Model):
     start = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     end = db.Column(db.DateTime, index=True, nullable=True)
     important = db.Column(db.Boolean, default=False)
+    status = db.Column(
+        db.Enum(TaskStatus),
+        default=TaskStatus.active
+    )
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
 
     def __repr__(self):
         return f'<Task {self.name} for user-{self.user_id}>'
@@ -75,8 +97,7 @@ class Task(db.Model):
         self.important = not self.important
 
     def set_deleted(self):
-        # TO DO
-        print('It works')
+        self.status = TaskStatus.deleted
 
     @classmethod
     def past_tasks(cls, user_id, start=None, end=None):
@@ -105,6 +126,7 @@ class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(64))
     slug = db.Column(db.String(100))
+    tasks = db.relationship('Task', backref='category', lazy='dynamic')
 
 
 @login.user_loader

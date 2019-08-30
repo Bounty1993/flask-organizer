@@ -32,3 +32,7 @@ class TaskCreationForm(FlaskForm):
         if start_date > end_date:
             msg = 'Data początkowa musi byc wcześniej niż data końca'
             raise ValidationError(msg)
+
+
+class CategoryCreationForm(FlaskForm):
+    pass

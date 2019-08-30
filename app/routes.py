@@ -8,6 +8,7 @@ from app import app, db
 from .models import Task
 from .forms import (
     TaskCreationForm,
+    CategoryCreationForm,
 )
 from .paginator import Paginator
 
@@ -143,5 +144,6 @@ def task_tags():
 
 
 @app.route('/tasks/tags/create')
-def create_tag():
+@login_required
+def create_category():
     pass
