@@ -9,6 +9,7 @@ from .models import Task, Category
 from .forms import (
     TaskCreationForm,
     CategoryCreationForm,
+    TaskAddForm,
 )
 from .paginator import Paginator
 
@@ -139,12 +140,14 @@ def past_tasks():
 
 
 @app.route('/tasks/tags')
+@login_required
 def task_tags():
     cat_form = CategoryCreationForm()
     categories = current_user.categories.all()
     num_page = request.args.get('page', 1)
     paginator = Paginator(categories)
     page = paginator.page(num_page)
+
     categories = page.paginated
     return render_template(
         'tasks_tags.html', cat_form=cat_form,

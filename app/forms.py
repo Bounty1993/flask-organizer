@@ -36,3 +36,7 @@ class TaskCreationForm(FlaskForm):
 
 class CategoryCreationForm(FlaskForm):
     title = StringField('Nazwa', validators=[DataRequired()])
+
+
+class TaskAddForm(FlaskForm):
+    pass
