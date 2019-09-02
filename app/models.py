@@ -128,6 +128,9 @@ class Category(db.Model):
     slug = db.Column(db.String(100))
     tasks = db.relationship('Task', backref='category', lazy='dynamic')
 
+    def __repr__(self):
+        return f'<Category {self.title}>'
+
     @classmethod
     def verify_title(cls, title, user_id):
         print('TO DO')
