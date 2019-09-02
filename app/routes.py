@@ -141,7 +141,8 @@ def past_tasks():
 @app.route('/tasks/tags')
 def task_tags():
     cat_form = CategoryCreationForm()
-    return render_template('tasks_tags.html', cat_form=cat_form)
+    categories = current_user.categories.all()
+    return render_template('tasks_tags.html', cat_form=cat_form, categories=categories)
 
 
 @app.route('/tasks/categories/create', methods=['POST'])

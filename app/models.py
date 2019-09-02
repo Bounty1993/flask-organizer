@@ -139,10 +139,6 @@ class Category(db.Model):
     def __repr__(self):
         return f'<Category {self.title}>'
 
-    @classmethod
-    def verify_title(cls, title, user_id):
-        print('TO DO')
-
 
 @login.user_loader
 def load_user(id):
