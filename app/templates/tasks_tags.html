@@ -14,32 +14,49 @@
   <div class="col s10 offset-s1">
     <div class="main-text row">Twoje zadania do wykonania</div>
     <div class="flex-around">
-      <a href="{{ url_for('new_task') }}" class="waves-effect waves-light btn">Nowe zadanie</a>
+      <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Nowa Kategoria</a>
       <a href="{{ url_for('past_tasks') }}" class="waves-effect waves-light btn">Historia</a>
     </div>
 
+    <div>Kategorie</div>
+    <ul class="collapsible">
+      <li>
+        <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+      </li>
+      <li>
+        <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+      </li>
+      <li>
+        <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+      </li>
+    </ul>
 
-  <ul class="collapsible">
-    <li>
-      <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-      <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-    </li>
-  </ul>
-
+</div>
+<div id="modal1" class="modal">
+  <form method="POST" action="{{ url_for('create_category') }}">
+    {{ cat_form.hidden_tag() }}
+    <div class="modal-content">
+      <h4>Utwórz nową kategorię</h4>
+      <div class="input-field col s12 m6">
+        {{ cat_form.title }}
+        {{ cat_form.title.label }}
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="modal-close waves-effect waves-green btn-flat">Zrezygnuj</button>
+      <button type="submit" class="waves-effect waves-green btn-flat">Utwórz</button>
+    </div>
+  </form>
 </div>
 {% endblock content %}
 {% block javascript %}
   <script>
     $(document).ready(function(){
     $('.collapsible').collapsible();
+    $('.modal').modal();
   });
   </script>
 {% endblock %}

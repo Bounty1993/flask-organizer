@@ -140,14 +140,23 @@ def past_tasks():
 
 @app.route('/tasks/tags')
 def task_tags():
-    return render_template('tasks_tags.html')
+    cat_form = CategoryCreationForm()
+    return render_template('tasks_tags.html', cat_form=cat_form)
 
 
-@app.route('/tasks/categories/create')
+@app.route('/tasks/categories/create', methods=['POST'])
 @login_required
 def create_category():
-    user_id = current_user.id
+    user = current_user
     form = CategoryCreationForm()
     if form.validate_on_submit():
         title = form.title.data
-        Category.verify_title(user_id, title)
+        category = Category(title=title)
+        category.authors.append(user)
+        db.session.add(category)
+        db.session.commit()
+        flash('Kategoria została utworzona pomyślnie')
+        return redirect(url_for('task_tags'))
+    errors = form.errors
+    flash(errors)
+    return redirect(url_for('task_tags'))
