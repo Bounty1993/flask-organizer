@@ -21,21 +21,23 @@
     <div>Kategorie</div>
     <ul class="collapsible">
       {% for category in categories %}
-      <li>
-        <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{category.title}}</div>
-        <div class="collapsible-body">
-          <ul class="collection">
-            <li class="collection-item avatar">
-              <i class="material-icons circle">folder</i>
-              <span class="title">Title</span>
-              <p>First Line <br>
-                 Second Line
-              </p>
-              <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-            </li>
-          </ul>
-        </div>
-      </li>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">filter_drama</i>{{category.title}}</div>
+          <div class="collapsible-body">
+            {% for task in category.tasks.all() %}
+            <ul class="collection">
+              <li class="collection-item avatar">
+                <i class="material-icons circle">folder</i>
+                <span class="title">{{ task.name }}</span>
+                <p>{{ task.place }} <br>
+                   Second Line
+                </p>
+                <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+              </li>
+            </ul>
+            {% endfor %}
+          </div>
+        </li>
       {% endfor %}
     </ul>
   </div>
