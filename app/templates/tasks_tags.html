@@ -29,6 +29,7 @@
     </ul>
   </div>
 </div>
+{% include 'pagination.html' %}
 <div id="modal1" class="modal">
   <form method="POST" action="{{ url_for('create_category') }}">
     {{ cat_form.hidden_tag() }}
