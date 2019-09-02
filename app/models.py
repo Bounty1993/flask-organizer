@@ -7,6 +7,8 @@ from flask_login import UserMixin
 from flask import render_template
 import jwt
 
+from slugify import slugify
+
 from app import db, app
 from app import login
 from app.auth.emails import send_email
@@ -127,6 +129,12 @@ class Category(db.Model):
     title = db.Column(db.String(64))
     slug = db.Column(db.String(100))
     tasks = db.relationship('Task', backref='category', lazy='dynamic')
+
+    def __init__(self, *args, **kwargs):
+        # make a slug during initialization
+        if 'slug' not in kwargs:
+            kwargs['slug'] = slugify(kwargs.get('title'))
+        super().__init__(*args, **kwargs)
 
     def __repr__(self):
         return f'<Category {self.title}>'

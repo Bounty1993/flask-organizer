@@ -6,6 +6,7 @@ SQLAlchemy>=0.8.0
 flask-migrate==2.5.2
 flask-login==0.4.1
 flask-mail==0.9.1
+python-slugify==3.0.3
 pyjwt==1.7.1
 gunicorn==19.9.0
 psycopg2
